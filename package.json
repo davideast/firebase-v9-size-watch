@@ -5,8 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "node ./esbuild.js",
-    "rollup": "rollup -c rollup.config.js && node index.js"
+    "start": "npm run rollup && npm run list",
+    "esbuild": "node ./esbuild.js",
+    "rollup": "rollup -c rollup.config.js && node index.js",
+    "list": "node index.js"
   },
   "keywords": [],
   "author": "",

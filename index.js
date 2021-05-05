@@ -2,7 +2,6 @@ import * as gzipSize from 'gzip-size';
 import pretty from 'pretty-bytes';
 import { printTable } from'console-table-printer';
 
-
 const files = [
   'public/current/app/bundle.js',
   'public/next/app/bundle.js',
@@ -28,7 +27,6 @@ const files = [
   'public/current/storage/bundle.js',
   'public/next/storage/bundle.js',
 ];
-
 
 const results = files.map(file => {
   const pieces = file.split('/');
