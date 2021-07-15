@@ -1,6 +1,7 @@
 import * as gzipSize from 'gzip-size';
 import pretty from 'pretty-bytes';
-import { printTable } from'console-table-printer';
+import {markdownTable} from 'markdown-table'
+import {readFileSync} from 'fs';
 
 const files = [
   'public/current/app/bundle.js',
@@ -28,13 +29,35 @@ const files = [
   'public/next/storage/bundle.js',
 ];
 
-const results = files.map(file => {
+const hash = {};
+for(let file of files) {
   const pieces = file.split('/');
-  const name = `${pieces[1]}/${pieces[2]}`;
-  return {
-    name,
-    size: pretty(gzipSize.fileSync(file))
-  };
-});
+  const version = pieces[1];
+  const service = pieces[2];
+  const gzipped = gzipSize.fileSync(file);
+  if(hash[service] == undefined) {
+    hash[service] = {};
+  }
+  hash[service][version] = gzipped;
+}
 
-printTable(results);
+let results = [];
+for(let service of Object.keys(hash)) {
+  let { current, next } = hash[service];
+  const diff = Math.round(100 - (next / current) * 100);
+  const currentSize = pretty(current);
+  const nextSize = pretty(next);
+  const packageName = `firebase/${service}`;
+  results = [
+    ...results,
+    [packageName, currentSize, nextSize, `${diff}% smaller`]
+  ];
+}
+console.log(results)
+const packagejs = JSON.parse(readFileSync('./package.json', 'utf8'));
+const table = markdownTable([
+  ['package', `${packagejs.dependencies['firebase-current']}`, packagejs.dependencies.firebase, 'Size difference'],
+  ...results
+]);
+
+console.log(table);
