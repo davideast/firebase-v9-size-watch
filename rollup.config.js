@@ -34,6 +34,8 @@ export default [
   makeBuild('current', 'auth'),
   makeBuild('next', 'firestore'),
   makeBuild('current', 'firestore'),
+  makeBuild('next', 'firestorelite'),
+  makeBuild('current', 'firestorelite'),
   makeBuild('next', 'storage'),
   makeBuild('current', 'storage'),
   makeBuild('next', 'database'),

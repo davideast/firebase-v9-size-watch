@@ -16,6 +16,9 @@ const files = [
   'public/current/firestore/bundle.js',
   'public/next/firestore/bundle.js',
 
+  'public/next/firestorelite/bundle.js',
+  'public/current/firestorelite/bundle.js',
+
   'public/current/messaging/bundle.js',
   'public/next/messaging/bundle.js',
 
@@ -43,7 +46,9 @@ for(let file of files) {
 
 let results = [];
 for(let service of Object.keys(hash)) {
+  console.log(service);
   let { current, next } = hash[service];
+  console.log(hash[service]);
   const diff = Math.round(100 - (next / current) * 100);
   const currentSize = pretty(current);
   const nextSize = pretty(next);

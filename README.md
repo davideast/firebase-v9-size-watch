@@ -7,6 +7,7 @@
 | firebase/auth          | 63.3 kB             | 17.6 kB       | 72% smaller     |
 | firebase/database      | 56 kB               | 41.8 kB       | 25% smaller     |
 | firebase/firestore     | 93.9 kB             | 56 kB         | 40% smaller     |
+| firebase/firestorelite | 93.9 kB             | 15.2 kB       | 84% smaller     |
 | firebase/messaging     | 16.4 kB             | 12.2 kB       | 25% smaller     |
 | firebase/performance   | 16.6 kB             | 14.1 kB       | 15% smaller     |
 | firebase/remote-config | 15.2 kB             | 12.3 kB       | 19% smaller     |
